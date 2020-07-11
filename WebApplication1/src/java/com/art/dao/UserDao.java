@@ -6,7 +6,7 @@
 
 package com.art.dao;
 
-import com.art.dto.User;
+import com.art.db.User;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
