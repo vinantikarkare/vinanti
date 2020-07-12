@@ -6,7 +6,7 @@
 
 package com.art.servlet;
 
-import com.art.db.DBConnection;
+import com.art.db.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -45,9 +45,11 @@ PrintWriter pw = response.getWriter();
 		String dob = request.getParameter("dob");
 		String state = request.getParameter("state");
 		String gender = request.getParameter("gender");
+                System.out.println("fname"+first_name+"lname"+last_name+"email_id"+email_id+"mobile_number"+mobile_number+"dob"+dob+"state"+state);
+                System.out.println("pswd"+password+"gender"+gender);
                 try {
 		Connection con = DBConnection.getConnection();
-		PreparedStatement ps = con.prepareStatement("insert into registeration values(?,?,?,?,?,?,?,?)");
+		PreparedStatement ps = con.prepareStatement("insert into registration values(?,?,?,?,?,?,?,?)");
 		ps.setString(1, first_name);
 		ps.setString(2, last_name);
 		ps.setString(3, mobile_number);
