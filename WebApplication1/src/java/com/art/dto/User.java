@@ -11,99 +11,22 @@ package com.art.dto;
  * @author hp
  */
 public class User {
-    private String firstname;
-    private String lastname;
+    private String first_name;
+    private String last_name;
     private String dob;
-    private String username;
     private String password;
-    private String mobile;
-    private String email;
+    private String mobile_number;
+    private String email_id;
     private String gender;
-    private String category;
-    private String skypeid;
     private int id;
-    private String expertdetail;
-    private String topics;
-    private String resume;
-    private String expertprofile;
-    private String date;
-    private String time;
-    private String expertdate;
-    private String experttime;
-    private String video;
+    private String state;
 
-    public String getVideo() {
-        return video;
+    public String getState() {
+        return state;
     }
 
-    public void setVideo(String video) {
-        this.video = video;
-    }
-    
-
-    public String getExpertdate() {
-        return expertdate;
-    }
-
-    public void setExpertdate(String expertdate) {
-        this.expertdate = expertdate;
-    }
-
-    public String getExperttime() {
-        return experttime;
-    }
-
-    public void setExperttime(String experttime) {
-        this.experttime = experttime;
-    }
-    
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getExpertprofile() {
-        return expertprofile;
-    }
-
-    public void setExpertprofile(String expertprofile) {
-        this.expertprofile = expertprofile;
-    }
-
-    public String getResume() {
-        return resume;
-    }
-
-    public void setResume(String resume) {
-        this.resume = resume;
-    }
-    
-    public String getTopics() {
-        return topics;
-    }
-
-    public void setTopics(String topics) {
-        this.topics = topics;
-    }
-
-    public String getExpertdetail() {
-        return expertdetail;
-    }
-
-    public void setExpertdetail(String expertdetail) {
-        this.expertdetail = expertdetail;
+    public void setState(String state) {
+        this.state = state;
     }
     public void setId(int id) {
         this.id = id;
@@ -114,19 +37,19 @@ public class User {
     }
 
     public String getFirstname() {
-        return firstname;
+        return first_name;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstname(String first_name) {
+        this.first_name = first_name;
     }
 
     public String getLastname() {
-        return lastname;
+        return last_name;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastname(String last_name) {
+        this.last_name = last_name;
     }
 
     public String getDob() {
@@ -135,14 +58,6 @@ public class User {
 
     public void setDob(String dob) {
         this.dob = dob;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -154,19 +69,19 @@ public class User {
     }
 
     public String getMobile() {
-        return mobile;
+        return mobile_number;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setMobile(String mobile_number) {
+        this.mobile_number = mobile_number;
     }
 
     public String getEmail() {
-        return email;
+        return email_id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email_id) {
+        this.email_id = email_id;
     }
 
     public String getGender() {
@@ -176,24 +91,5 @@ public class User {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getSkypeid() {
-        return skypeid;
-    }
-
-    public void setSkypeid(String skypeid) {
-        this.skypeid = skypeid;
-    }
-
-    
-   
    
 } 
