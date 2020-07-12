@@ -49,7 +49,8 @@ PrintWriter pw = response.getWriter();
                 System.out.println("pswd"+password+"gender"+gender);
                 try {
 		Connection con = DBConnection.getConnection();
-		PreparedStatement ps = con.prepareStatement("insert into registration values(?,?,?,?,?,?,?,?)");
+                 String sql = "INSERT INTO registration (first_name, last_name, mobile_number, email_id, dob, password, gender, state) values (?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, first_name);
 		ps.setString(2, last_name);
 		ps.setString(3, mobile_number);
