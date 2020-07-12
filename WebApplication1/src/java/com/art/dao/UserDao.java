@@ -6,7 +6,7 @@
 
 package com.art.dao;
 
-import com.art.db.User;
+import com.art.dto.User;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -16,6 +16,11 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
+
+
+
+import com.art.db.DBConnection;
+import com.art.db.DBProperties;
 
 
 /**
