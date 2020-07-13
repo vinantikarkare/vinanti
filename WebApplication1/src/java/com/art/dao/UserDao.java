@@ -68,12 +68,14 @@ public static boolean addUser(User user)
 
     public static int login_check(String email_id, String password) {
       Connection conn = DBConnection.getConnection();
+      System.out.println(password);
+      System.out.println(email_id);
         int id=0;
         try {
             String sql = "select id from registration where email_id ='"+email_id+"' and password ='"+password+"'";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-
+            System.out.println(sql);
             while (rs.next()) {
                 id = rs.getInt("id");
             }

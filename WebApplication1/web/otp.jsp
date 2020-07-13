@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Enter otp</h1>
-<input type="text" name="email"/>
+<input type="text" name="otp"/>
     </body>
 </html>

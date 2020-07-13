@@ -52,7 +52,7 @@ public class Login extends HttpServlet {
         
        
         
-                 System.out.println(id);
+                 System.out.println("================="+id);
                 if(id==0){
                      response.sendRedirect("registration.jsp");
                 }
