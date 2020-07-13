@@ -31,8 +31,40 @@ public class UserDao {
     
 public static boolean addUser(User user)
 {
-    return false;
-}
+    String first_name =user.getFirstname();
+    String last_name = user.getLastname();
+    String email_id = user.getEmail();
+    String password = user.getPassword();
+    String mobile_number =user.getMobile();
+    String dob =user.getDob();
+    String state = user.getState();
+    String gender =user.getGender();
+    String otp =user.getOtp();
+    boolean flag=true;
+    try {
+                
+		Connection con = DBConnection.getConnection();
+                 String sql = "INSERT INTO registration (first_name, last_name, mobile_number, email_id, dob, password, gender, state, otp) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, first_name);
+		ps.setString(2, last_name);
+		ps.setString(3, mobile_number);
+		ps.setString(4, email_id);
+		ps.setString(5, dob);
+		ps.setString(6, password);
+		ps.setString(7, gender);
+                ps.setString(8, state);
+                ps.setString(9, otp);
+		flag=ps.execute();
+        
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return flag;
+    }
+
 
     public static int login_check(String email_id, String password) {
       Connection conn = DBConnection.getConnection();

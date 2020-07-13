@@ -5,8 +5,10 @@
  */
 
 package com.art.servlet;
-
+import java.util.Random;
+import com.art.dao.UserDao;
 import com.art.db.*;
+import com.art.dto.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -45,32 +47,29 @@ PrintWriter pw = response.getWriter();
 		String dob = request.getParameter("dob");
 		String state = request.getParameter("state");
 		String gender = request.getParameter("gender");
-                System.out.println("fname"+first_name+"lname"+last_name+"email_id"+email_id+"mobile_number"+mobile_number+"dob"+dob+"state"+state);
-                System.out.println("pswd"+password+"gender"+gender);
-                try {
-		Connection con = DBConnection.getConnection();
-                 String sql = "INSERT INTO registration (first_name, last_name, mobile_number, email_id, dob, password, gender, state) values (?, ?, ?, ?, ?, ?, ?, ?)";
-                PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, first_name);
-		ps.setString(2, last_name);
-		ps.setString(3, mobile_number);
-		ps.setString(4, email_id);
-		ps.setString(5, dob);
-		ps.setString(6, password);
-		ps.setString(7, gender);
-                ps.setString(8, state);
-		int k = ps.executeUpdate();
-		if(k==1)
-		{
-			RequestDispatcher rd = request.getRequestDispatcher("index.html");
-			rd.include(request, response);
-			pw.println("<h3 class='tab'>User Registered Successfully</h3>");
-		}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+                
+                String OTPCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+                StringBuilder otpp = new StringBuilder();
+                Random rnd = new Random();
+                while (otpp.length() < 4) { // length of the random string.
+                    int index = (int) (rnd.nextFloat() * OTPCHARS.length());
+                    otpp.append(OTPCHARS.charAt(index));
+                }
+                String otp = otpp.toString();
+                
+              User user=new User();
+              user.setFirstname(first_name);
+              user.setLastname(last_name);
+              user.setEmail(email_id);
+              user.setGender(gender);
+              user.setMobile(mobile_number);
+              user.setDob(dob);
+              user.setPassword(password);
+              user.setState(state);
+              user.setOtp(otp);
+              boolean addUser = UserDao.addUser(user);
+              
+                
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

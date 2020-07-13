@@ -20,6 +20,15 @@ public class User {
     private String gender;
     private int id;
     private String state;
+    private String otp;
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
 
     public String getState() {
         return state;
