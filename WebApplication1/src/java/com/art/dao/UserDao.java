@@ -33,4 +33,21 @@ public static boolean addUser(User user)
 {
     return false;
 }
+
+    public static int login_check(String email_id, String password) {
+      Connection conn = DBConnection.getConnection();
+        int id=0;
+        try {
+            String sql = "select id from registration where email_id ='"+email_id+"' and password ='"+password+"'";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                id = rs.getInt("id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
 }
