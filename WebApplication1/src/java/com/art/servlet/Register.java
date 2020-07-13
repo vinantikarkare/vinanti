@@ -5,7 +5,7 @@
  */
 
 package com.art.servlet;
-
+import java.util.Random;
 import com.art.dao.UserDao;
 import com.art.db.*;
 import com.art.dto.User;
@@ -47,8 +47,15 @@ PrintWriter pw = response.getWriter();
 		String dob = request.getParameter("dob");
 		String state = request.getParameter("state");
 		String gender = request.getParameter("gender");
-                System.out.println("fname"+first_name+"lname"+last_name+"email_id"+email_id+"mobile_number"+mobile_number+"dob"+dob+"state"+state);
-                System.out.println("pswd"+password+"gender"+gender);
+                
+                String OTPCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+                StringBuilder otpp = new StringBuilder();
+                Random rnd = new Random();
+                while (otpp.length() < 4) { // length of the random string.
+                    int index = (int) (rnd.nextFloat() * OTPCHARS.length());
+                    otpp.append(OTPCHARS.charAt(index));
+                }
+                String otp = otpp.toString();
                 
               User user=new User();
               user.setFirstname(first_name);
@@ -59,6 +66,7 @@ PrintWriter pw = response.getWriter();
               user.setDob(dob);
               user.setPassword(password);
               user.setState(state);
+              user.setOtp(otp);
               boolean addUser = UserDao.addUser(user);
               
                 
