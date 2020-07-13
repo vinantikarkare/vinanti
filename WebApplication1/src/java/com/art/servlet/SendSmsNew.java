@@ -17,7 +17,7 @@ import java.net.URLConnection;
  * @author ind
  */
 class SendSmsNew {
-       public static String sendotp(String mobilenumber,String firstname,String lastname){
+       public static String sendotp(String mobilenumber,String firstname,String lastname,String otp){
                         //Your authentication key
             //String authkey = "269810AKXf2a6Cuv8d5e50f710P1";
             String authkey = "269810AYLieKp8MG5c9cda01";
@@ -36,7 +36,7 @@ class SendSmsNew {
             URLConnection myURLConnection=null;
             URL myURL=null;
             BufferedReader reader=null;
-            String otp="1234";
+          
             //encoding message
             //Send SMS API
             

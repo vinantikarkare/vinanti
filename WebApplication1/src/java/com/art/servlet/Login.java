@@ -50,8 +50,7 @@ public class Login extends HttpServlet {
         String firstname="Vaibhav";
         String lastname= "Patidar";
         
-        String a=SendSmsNew.sendotp(mobiles,firstname,lastname);
-        System.out.println("------------"+a);
+       
         
                  System.out.println(id);
                 if(id==0){

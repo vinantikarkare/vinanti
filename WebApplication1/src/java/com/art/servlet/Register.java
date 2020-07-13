@@ -48,10 +48,10 @@ PrintWriter pw = response.getWriter();
 		String state = request.getParameter("state");
 		String gender = request.getParameter("gender");
                 
-                String OTPCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+                String OTPCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
                 StringBuilder otpp = new StringBuilder();
                 Random rnd = new Random();
-                while (otpp.length() < 4) { // length of the random string.
+                while (otpp.length() < 6) { // length of the random string.
                     int index = (int) (rnd.nextFloat() * OTPCHARS.length());
                     otpp.append(OTPCHARS.charAt(index));
                 }
@@ -69,7 +69,11 @@ PrintWriter pw = response.getWriter();
               user.setOtp(otp);
               boolean addUser = UserDao.addUser(user);
               
-                
+              
+               String a=SendSmsNew.sendotp(mobile_number,first_name,last_name,otp);
+        System.out.println("------------"+a);
+        
+                 response.sendRedirect("otp.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
