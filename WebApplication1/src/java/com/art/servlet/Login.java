@@ -5,10 +5,15 @@
  */
 
 package com.art.servlet;
-
+import java.io.*;
 import com.art.dao.UserDao;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,8 +36,7 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+  
             /* TODO output your page here. You may use following sample code. */
            		String email_id = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -41,6 +45,14 @@ public class Login extends HttpServlet {
                 System.out.println(password);
                 
                 int id= UserDao.login_check(email_id,password);
+                
+                  String mobiles= "7974644419";
+        String firstname="Vaibhav";
+        String lastname= "Patidar";
+        
+        String a=SendSmsNew.sendotp(mobiles,firstname,lastname);
+        System.out.println("------------"+a);
+        
                  System.out.println(id);
                 if(id==0){
                      response.sendRedirect("registration.jsp");
@@ -48,7 +60,7 @@ public class Login extends HttpServlet {
                 else{
                      response.sendRedirect("index.html");
                 }
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
