@@ -8,6 +8,10 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>com.art.servlet.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OtpGeneration</servlet-name>
+        <servlet-class>com.art.servlet.OtpGeneration</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OtpGeneration</servlet-name>
+        <url-pattern>/OtpGeneration</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

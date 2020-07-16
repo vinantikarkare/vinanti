@@ -55,7 +55,8 @@ PrintWriter pw = response.getWriter();
                     int index = (int) (rnd.nextFloat() * OTPCHARS.length());
                     otpp.append(OTPCHARS.charAt(index));
                 }
-                String otp = otpp.toString();
+                String otp = OtpGeneration.otpGen();
+                System.out.println("otppp"+otp);
                 
               User user=new User();
               user.setFirstname(first_name);
