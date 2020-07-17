@@ -12,6 +12,10 @@
         <servlet-name>OtpGeneration</servlet-name>
         <servlet-class>com.art.servlet.OtpGeneration</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OtpByUser</servlet-name>
+        <servlet-class>com.art.servlet.OtpByUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>OtpGeneration</servlet-name>
         <url-pattern>/OtpGeneration</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OtpByUser</servlet-name>
+        <url-pattern>/OtpByUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

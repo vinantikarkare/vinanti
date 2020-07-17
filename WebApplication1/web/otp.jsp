@@ -12,7 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Enter otp</h1>
-<input type="text" name="otp"/>
-    </body>
+        <form action="OtpByUser" method="post">
+            otp<input type="text" name="otp_user"/>
+            Email Id:<input type="text" name="email_id"/><br/><br/>
+            <input type="submit" value="submit">
+        </form>>
+   </body>
 </html>

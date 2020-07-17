@@ -84,4 +84,40 @@ public static boolean addUser(User user)
         }
         return id;
     }
+
+    
+
+    public static int checkOtp(String otp, String email_id) {
+     Connection conn = DBConnection.getConnection();
+      String otp_db="";
+      int id=0;
+        try {
+            String sql = "select otp,id from registration where email_id ='"+email_id+"'";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            System.out.println(sql);
+            while (rs.next()) {
+                id = rs.getInt("id");
+                otp_db = rs.getString("otp");
+            }
+            st.close();
+            if(otp_db.equals(otp))
+                    {
+                    String sqll = "update registration set otp='"+0+"' where email_id='"+email_id+"'";
+                    Statement stt = conn.createStatement();
+                    int rss = stt.executeUpdate(sqll);
+                    System.out.println(sqll);
+                    }
+        
+            else{
+                System.out.println("nhiiii huaaaa");
+            }
+        }
+                catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        System.out.println("idd"+id);
+        return id;
+    }
 }
