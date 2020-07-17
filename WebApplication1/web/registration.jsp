@@ -19,7 +19,18 @@ gender:<input type="text" name="gender"/><br/><br/>
 state:<input type="text" name="state"/><br/><br/>
 dob:<input type="date" name="dob"/><br/><br/>
 <input type="submit" value="submit"/>  
-  
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0" nonce="TAQxP5dd"></script>
+        
+        <div class="fb-comments" data-href="http://localhost:8084/WebApplication1/registration.jsp" data-numposts="50" data-width=""></div>
+</body>
 </form>  
 </body>  
 </html> 
