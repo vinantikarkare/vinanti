@@ -48,15 +48,15 @@ PrintWriter pw = response.getWriter();
 		String state = request.getParameter("state");
 		String gender = request.getParameter("gender");
                 
-                String OTPCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-                StringBuilder otpp = new StringBuilder();
-                Random rnd = new Random();
-                while (otpp.length() < 6) { // length of the random string.
-                    int index = (int) (rnd.nextFloat() * OTPCHARS.length());
-                    otpp.append(OTPCHARS.charAt(index));
-                }
+//                String OTPCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+//                StringBuilder otpp = new StringBuilder();
+//                Random rnd = new Random();
+//                while (otpp.length() < 6) { // length of the random string.
+//                    int index = (int) (rnd.nextFloat() * OTPCHARS.length());
+//                    otpp.append(OTPCHARS.charAt(index));
+//                }
                 String otp = OtpGeneration.otpGen();
-                System.out.println("otppp"+otp);
+//                System.out.println("otppp"+otp);
                 
               User user=new User();
               user.setFirstname(first_name);

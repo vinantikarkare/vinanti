@@ -44,7 +44,7 @@ public static boolean addUser(User user)
     try {
                 
 		Connection con = DBConnection.getConnection();
-                 String sql = "INSERT INTO registration (first_name, last_name, mobile_number, email_id, dob, password, gender, state, otp) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO registration (first_name, last_name, mobile_number, email_id, dob, password, gender, state, otp) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, first_name);
 		ps.setString(2, last_name);
