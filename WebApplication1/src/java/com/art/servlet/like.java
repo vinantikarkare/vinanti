@@ -46,7 +46,10 @@ public class like extends HttpServlet {
             
             Boolean flag= likebuttonid.contains(","+id);
            System.out.println(id+"------------"+codee);
+           int count = UserDao.likeCount(codee);
+            System.out.println("vinnn"+count);
            if(flag){
+               count--;
            String tempWord = id+","+ " "; 
                 likebuttonid = likebuttonid.replaceAll(tempWord, ""); 
                System.out.println(likebuttonid);
@@ -55,10 +58,12 @@ public class like extends HttpServlet {
                 likebuttonid = likebuttonid.replaceAll(tempWord, ""); 
                 System.out.println(likebuttonid);
                 
-                boolean a= UserDao.unclickLike(codee,likebuttonid);}
+                boolean a= UserDao.unclickLike(codee,likebuttonid,count);
+           }
            
            else{
-           int a= UserDao.clicklike(id , codee);
+               count++;
+           int a= UserDao.clicklike(id , codee, count);
            }
            response.sendRedirect("dashboard.jsp");
            

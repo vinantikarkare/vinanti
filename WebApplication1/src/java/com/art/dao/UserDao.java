@@ -121,13 +121,14 @@ public static boolean addUser(User user)
         return id;
     }
     
-     public static int clicklike(String id,String codee) throws SQLException {
+     public static int clicklike(String id,String codee,int count) throws SQLException {
          boolean flag = true;
          int a=0;
+        
         Connection conn = DBConnection.getConnection();
 
         System.out.println("+++++++++++++++++++++="+id+"  "+codee);
-                      String sql = "update likebutton set likee = concat(likee, '"+id+"') where code = '"+codee+"'";
+                      String sql = "update likebutton set likes = concat(likes, '"+id+"'),likes_count = '"+count+"' where code = '"+codee+"'";
                 System.out.println(sql);
                 PreparedStatement ps = conn.prepareStatement(sql);
                 System.out.println("==========");
@@ -142,12 +143,12 @@ public static boolean addUser(User user)
           Connection conn = DBConnection.getConnection();
      String likee="";
         try {
-            String sql = "select likee from likebutton where code ='"+codee+"'";
+            String sql = "select likes from likebutton where code ='"+codee+"'";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             System.out.println(sql);
             while (rs.next()) {
-               likee  = rs.getString("likee");
+               likee  = rs.getString("likes");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -155,12 +156,30 @@ public static boolean addUser(User user)
         return likee;
     }
     
+     public static int likeCount(String codee)
+     {
+         int count=0;
+          Connection conn = DBConnection.getConnection();
+            try {
+                String sql = "select likes_count from likebutton where code ='"+codee+"'";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            System.out.println(sql);
+            while (rs.next()) {
+               count  = rs.getInt("likes_count");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+     
+     }
     
-public static boolean unclickLike(String codee, String likebuttonid) {
+public static boolean unclickLike(String codee, String likebuttonid, int count) {
         boolean flag = false; 
         try {
         Connection conn = DBConnection.getConnection();
-        String sql = "update likebutton set likee ='"+likebuttonid+"' where code = '"+codee+"'";
+        String sql = "update likebutton set likes ='"+likebuttonid+"',likes_count = '"+count+"' where code = '"+codee+"'";
                 System.out.println(sql);
                 PreparedStatement ps = conn.prepareStatement(sql);
                 System.out.println("==========");
