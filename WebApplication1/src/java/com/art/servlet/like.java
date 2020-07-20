@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -59,14 +60,17 @@ public class like extends HttpServlet {
                 System.out.println(likebuttonid);
                 
                 boolean a= UserDao.unclickLike(codee,likebuttonid,count);
+                
            }
            
            else{
                count++;
            int a= UserDao.clicklike(id , codee, count);
+         
            }
-           response.sendRedirect("dashboard.jsp");
-           
+        
+                   
+                  response.sendRedirect("dashboard.jsp");
            
         } catch (SQLException ex) {
             Logger.getLogger(like.class.getName()).log(Level.SEVERE, null, ex);
