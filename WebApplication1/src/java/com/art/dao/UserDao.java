@@ -120,4 +120,55 @@ public static boolean addUser(User user)
         System.out.println("idd"+id);
         return id;
     }
+    
+     public static int clicklike(String id,String codee) throws SQLException {
+         boolean flag = true;
+         int a=0;
+        Connection conn = DBConnection.getConnection();
+
+        System.out.println("+++++++++++++++++++++="+id+"  "+codee);
+                      String sql = "update likebutton set likee = concat(likee, '"+id+"') where code = '"+codee+"'";
+                System.out.println(sql);
+                PreparedStatement ps = conn.prepareStatement(sql);
+                System.out.println("==========");
+                flag = ps.execute();
+
+                
+                return a;
+    
+    }
+    
+     public static String checkid(String codee) {
+          Connection conn = DBConnection.getConnection();
+     String likee="";
+        try {
+            String sql = "select likee from likebutton where code ='"+codee+"'";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            System.out.println(sql);
+            while (rs.next()) {
+               likee  = rs.getString("likee");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return likee;
+    }
+    
+    
+public static boolean unclickLike(String codee, String likebuttonid) {
+        boolean flag = false; 
+        try {
+        Connection conn = DBConnection.getConnection();
+        String sql = "update likebutton set likee ='"+likebuttonid+"' where code = '"+codee+"'";
+                System.out.println(sql);
+                PreparedStatement ps = conn.prepareStatement(sql);
+                System.out.println("==========");
+                flag = ps.execute();
+
+         }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
 }

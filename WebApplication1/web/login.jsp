@@ -19,5 +19,12 @@ Email :<input type="text" name="email"/><br/><br/>
 Password :<input type="text" name="password"/><br/><br/>
 <input type="submit" value="submit"/>  
         </form>
+        
+        <br><br><br><br><br>
+        
+<div id="fb-root" style="align:center;"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0" nonce="TAQxP5dd"></script>
+<div class="fb-comments" data-href="http://localhost:8084/WebApplication1/login.jsp" data-numposts="50" data-width=""></div>
+
     </body>
 </html>
