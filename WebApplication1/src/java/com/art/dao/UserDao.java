@@ -6,7 +6,10 @@
 
 package com.art.dao;
 
+import com.art.db.DBConnection;
+import com.art.db.DBProperties;
 import com.art.dto.User;
+import com.art.servlet.OtpGeneration;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,8 +22,6 @@ import javax.servlet.RequestDispatcher;
 
 
 
-import com.art.db.DBConnection;
-import com.art.db.DBProperties;
 
 
 /**
@@ -190,4 +191,32 @@ public static boolean unclickLike(String codee, String likebuttonid, int count) 
         }
         return flag;
     }
-}
+
+    public static boolean addComment(User user) {
+    String first_index =user.getFirst_index();
+    String last_index = user.getLast_index();
+    String comment = user.getComment();
+    String unique_code = user.getUnique_code();
+    String comment_reply= OtpGeneration.uniqueCodeGen();
+    boolean flag=true;
+    try {
+                
+		Connection con = DBConnection.getConnection();
+                String sql = "INSERT INTO comment (first_index, last_index, comment, comment_reply, unique_code) values (?, ?, ?, ?, ?)";
+                PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, first_index);
+		ps.setString(2, last_index);
+		ps.setString(3, comment);
+		ps.setString(4, comment_reply);
+		ps.setString(5, unique_code);
+		flag=ps.execute();
+        
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return flag;
+    }
+    
+    }

@@ -16,6 +16,10 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>com.art.servlet.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Comment</servlet-name>
+        <servlet-class>com.art.servlet.Comment</servlet-class>
+    </servlet>
     
     <servlet>
         <servlet-name>OtpByUser</servlet-name>
@@ -24,6 +28,10 @@
      <servlet-mapping>
         <servlet-name>OtpByUser</servlet-name>
         <url-pattern>/OtpByUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Comment</servlet-name>
+        <url-pattern>/Comment</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>

@@ -62,10 +62,11 @@ While delivering a lecture at the Indian Institute of Management Shillong, Kalam
  <br>
  <!-- Form Start -->
  
-  <form action="comment" method="post">  
+  <form action="Comment" method="post">  
  Id: <input type="text" name="idd" value="<%=idd%>"  readonly="">
  firstindex : <input id="firstindex" name="firstindex" readonly=""/>
  lastIndex : <input id="lastindex" name="lastindex"  readonly=""/>
+ uniquecode:<input id="unique" name="uniqueCode" />
  <!-- <p id="past"></p> -->
 <p>
   <label>Comment : </label>

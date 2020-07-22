@@ -5,26 +5,21 @@
  */
 
 package com.art.servlet;
-import java.io.*;
+
 import com.art.dao.UserDao;
-import java.io.BufferedReader;
+import com.art.dto.User;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ind
+ * @author Dell
  */
-public class Login extends HttpServlet {
+public class Comment extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,48 +32,57 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-  
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           		String email_id = request.getParameter("email");
-		String password = request.getParameter("password");
-                
-                System.out.println(email_id);
-                System.out.println(password);
-                
-                int id= UserDao.login_check(email_id,password);
-                
-                  String mobiles= "7974644419";
-        String firstname="Vaibhav";
-        String lastname= "Patidar";
-        
-       
-        
-                 System.out.println("================="+id);
-                 
-                    HttpSession session = request.getSession(false);
-                if(id==0){
-                     response.sendRedirect("registration.jsp");
-                }
-                else{
-                     session.setAttribute("id", id);
-                     response.sendRedirect("comment.jsp");
-                }
-        
+                String first_index = request.getParameter("firstindex");
+		String last_index = request.getParameter("lastindex");
+		String comment = request.getParameter("comment");
+		String uniqueCode = request.getParameter("uniqueCode");
+
+                User user= new User();
+                user.setComment(comment);
+                user.setFirst_index(first_index);
+                user.setLast_index(last_index);
+                user.setUnique_code(uniqueCode);
+                boolean addComment = UserDao.addComment(user);
+        }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";
