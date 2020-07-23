@@ -24,4 +24,15 @@ public class OtpGeneration {
                 String otp = otpp.toString();
                 return otp;
              }
+     public static String uniqueCodeGen(){ 
+              String OTPCHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+                StringBuilder otpp = new StringBuilder();
+                Random rnd = new Random();
+                while (otpp.length() < 10) { // length of the random string.
+                    int index = (int) (rnd.nextFloat() * OTPCHARS.length());
+                    otpp.append(OTPCHARS.charAt(index));
+                }
+                String otp = otpp.toString();
+                return otp;
+             }
 }
