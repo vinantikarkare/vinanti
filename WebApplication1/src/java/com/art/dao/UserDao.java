@@ -193,6 +193,7 @@ public static boolean unclickLike(String codee, String likebuttonid, int count) 
     }
 
     public static boolean addComment(User user) {
+        int id=user.getId();
     String first_index =user.getFirst_index();
     String last_index = user.getLast_index();
     String comment = user.getComment();
@@ -202,13 +203,14 @@ public static boolean unclickLike(String codee, String likebuttonid, int count) 
     try {
                 
 		Connection con = DBConnection.getConnection();
-                String sql = "INSERT INTO comment (first_index, last_index, comment, comment_reply, unique_code) values (?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO comment (id, first_index, last_index, comment, comment_reply, unique_code) values (?, ?, ?, ?, ?, ?)";
                 PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, first_index);
-		ps.setString(2, last_index);
-		ps.setString(3, comment);
-		ps.setString(4, comment_reply);
-		ps.setString(5, unique_code);
+                ps.setInt(1, id);
+		ps.setString(2, first_index);
+		ps.setString(3, last_index);
+		ps.setString(4, comment);
+		ps.setString(5, comment_reply);
+		ps.setString(6, unique_code);
 		flag=ps.execute();
         
         }
@@ -217,6 +219,42 @@ public static boolean unclickLike(String codee, String likebuttonid, int count) 
         }
         
         return flag;
+    }
+    
+      public static ArrayList<User> getComment() {
+        Connection conn = DBConnection.getConnection();
+        ArrayList<User> userList = new ArrayList<>();
+        try {
+            
+           
+            String sql = "select * from comment";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String unique_code = rs.getString("unique_code");
+                String first_index = rs.getString("first_index");
+                String last_index = rs.getString("last_index");
+                String comment = rs.getString("comment");
+                String comment_reply= rs.getString("comment_reply");
+               
+               
+                System.out.println("  " + id);
+                User user = new User();
+                user.setId(id);
+                user.setFirst_index(first_index);
+                user.setLast_index(last_index);
+                user.setComment(comment);
+                user.setComment_reply(comment_reply);
+                user.setUnique_code(unique_code);
+
+                userList.add(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userList;
     }
     
     }

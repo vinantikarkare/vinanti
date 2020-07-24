@@ -35,6 +35,7 @@ public class Comment extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+             int id = Integer.parseInt(request.getParameter("idd"));
                 String first_index = request.getParameter("firstindex");
 		String last_index = request.getParameter("lastindex");
 		String comment = request.getParameter("comment");
@@ -42,10 +43,13 @@ public class Comment extends HttpServlet {
 
                 User user= new User();
                 user.setComment(comment);
+                user.setId(id);
                 user.setFirst_index(first_index);
                 user.setLast_index(last_index);
                 user.setUnique_code(uniqueCode);
                 boolean addComment = UserDao.addComment(user);
+                
+                response.sendRedirect("comment.jsp");
         }
     }
 
