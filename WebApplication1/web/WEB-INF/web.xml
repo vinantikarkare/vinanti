@@ -20,7 +20,15 @@
         <servlet-name>Comment</servlet-name>
         <servlet-class>com.art.servlet.Comment</servlet-class>
     </servlet>
+<servlet>
+        <servlet-name>PhotoUploader</servlet-name>
+        <servlet-class>com.art.servlet.PhotoUploader</servlet-class>
+    </servlet>
     
+    <servlet-mapping>
+        <servlet-name>PhotoUploader</servlet-name>
+        <url-pattern>/PhotoUploader</url-pattern>
+    </servlet-mapping>    
     <servlet>
         <servlet-name>OtpByUser</servlet-name>
         <servlet-class>com.art.servlet.OtpByUser</servlet-class>
