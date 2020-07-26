@@ -259,4 +259,39 @@ public static boolean unclickLike(String codee, String likebuttonid, int count) 
         return userList;
     }
     
+       public static User getUser(int id) {
+        User user = new User();
+        System.out.println("============================================" + id);
+        Connection conn = DBConnection.getConnection();
+        try {
+            String sql = "select * from registration where id=" + id;
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                String first_name = rs.getString("first_name");
+                String last_name = rs.getString("last_name");
+                String mobile_number = rs.getString("mobile_number");
+                String email_id = rs.getString("email_id");
+                String dob = rs.getString("dob");
+                String password = rs.getString("password");
+                String gender = rs.getString("gender");
+                String state = rs.getString("state");
+                String profile = rs.getString("profile");
+                user.setFirstname(first_name);
+                user.setLast_name(last_name);
+                user.setMobile_number(mobile_number);
+                user.setEmail_id(email_id);
+                user.setDob(dob);
+                user.setPassword(password);
+                user.setGender(gender);
+                user.setState(state);
+                user.setProfile(profile);          
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+       
     }

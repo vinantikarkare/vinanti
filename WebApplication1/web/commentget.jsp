@@ -141,6 +141,50 @@ input[type=text]:focus {
   background-color: lightblue;
 }
 
+/* style for the css table container */
+
+table, th, td {
+  border: 0px solid black;
+  border-collapse: collapse;
+  
+}
+th, td {
+  padding: 0px;
+  text-align: left;    
+}
+
+/* dropdown for reply */
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #e6ffff;
+  width: 360px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color:#e6f7ff;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
 </style>
 <body> 
     
@@ -158,6 +202,10 @@ input[type=text]:focus {
                 String comment="";
                 String unique_code="";
                 String comment_reply="";
+                
+                String profile="";
+                String first_name="";
+                String last_name="";
                 
               
                 %>
@@ -291,8 +339,21 @@ While delivering a lecture at the Indian Institute of Management Shillong, Kalam
                           pati = new String("<%=comment%>");
                           
                        if(<%=aaa%> == uniqueNames[i]){
+                           
+                           <%
+                            User usera = UserDao.getUser(comment_id);
+                           profile = usera.getProfile();
+                           first_name = usera.getFirst_name();
+                           last_name = usera.getLast_name();
+                           
+                           %>
+                            
+                          var profilee= new String("<%=profile%>");
+                          var first_namee=new String("<%=first_name%>");
+                          var last_namee=new String("<%=last_name%>");
+                                       
                            count += 1;
-                           comm += "<p>("+count+") "+pati+"</p>";
+                           comm += "<table style='width:100%;'><tr><th rowspan='2' style='width:80px;'>&nbsp;&nbsp;<img src='upload/"+profilee+"' alt='Profile' style='width:55px;height:55px;border-radius: 50%;' ></th><td style='font-size:17px;'><b>"+first_namee+" "+last_namee+"</b></td></tr><tr><td style='font-size:13px;'>"+pati+" <div class='dropdown' style='float:right;cursor: pointer;'> <div class='dropbtn' style='color:blue;'>Reply</div><div class='dropdown-content' ><a><textarea id='w3review' name='comment' rows='2' cols='45' id='foo' style='margin: 10px 2px;'>@"+first_namee+" "+last_namee+" </textarea></a></div></div></td></tr></table><hr style='height:1.3px;border-width:0;color:gray;background-color:#bfbfbf;'>";
                           }
                      
               <%       }   
@@ -300,10 +361,12 @@ While delivering a lecture at the Indian Institute of Management Shillong, Kalam
                                
                                                        r = Math.random().toString(36).substring(7);
                                 
-                       dia="<a class='button' href='#"+r+"'>&nbsp;<i class='fa fa-comments' aria-hidden='true'><spam style='font-size:0.7em;' >("+count+")</spam></i></a><div id='"+r+"' class='overlay'><div class='popup'><h2>Comment...</h2><a class='close' href='#'>×</a><div class='content'>"+comm+"<br>Comment : <br><input type='text' id='lname' name='lname'><br><input type='submit' value='Submit'></div></div></div>";
+                       dia="<a class='button' href='#"+r+"'>&nbsp;<i class='fa fa-comments' aria-hidden='true'><spam style='font-size:0.7em;' >("+count+")</spam></i></a><div id='"+r+"' class='overlay'><div class='popup' style='background:#f2f2f2;'><h2>Comment...</h2><br><a class='close' href='#'>×</a><div class='content'>"+comm+"<br>Comment : <br><input type='text' id='lname' name='lname'><br><input type='submit' value='Submit'></div></div></div>";
                         var result = p.splice(uniqueNames[i], 0, dia);
                           document.getElementById("my-textarea").innerHTML = result;
                           
+                        
+
                         
     }
                         
