@@ -26,6 +26,23 @@ public class User {
     private String comment; 
     private String comment_reply;
     private String unique_code;
+     private String profile;
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
 
     public String getLast_index() {
         return last_index;

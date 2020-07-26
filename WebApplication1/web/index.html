@@ -38,7 +38,39 @@
 
 
      <script src="js/profile.js"></script>
-  </head>
+     
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      </head>
+<style>
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+
+#profile-container {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    text-align: center;
+    margin-left: 32%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+#profile-container img {
+    width: 150px;
+    height: 150px;
+}
+</style>
+  
   
   <style>
       input:focus
@@ -48,12 +80,13 @@
     box-shadow: 0 0 10px #0791b8;
     border-radius:8px;
     font-size:17px;
-    
+     
 }
 
 input{ padding: 1px 2px;
      border-radius:7px;
 }
+
 
       .buttonvai {
   background-color: #00b36b; /* Green */
@@ -81,7 +114,6 @@ input{ padding: 1px 2px;
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <!-- Modal -->
     
-     <form action="register" method="post">
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -94,59 +126,38 @@ input{ padding: 1px 2px;
         </div>
         <div class="modal-body">
           <p>
-              <div class="flex">
-  <div class="left">
-<div class="profile">
-        <div class="photo">
-            <input type="file" accept="image/*" name="profile">
-            <div class="photo__helper">
-                <div class="photo__frame photo__frame--circle" >
-                    <canvas class="photo__canvas"></canvas>
-                    <div class="message is-empty">
 
-                        <p class="message--desktop"><b>Drop your photo here or browse your computer.</b></p>
-                        <p class="message--mobile">Tap here to select your picture.</p>
-                    </div>
-                    <div class="message is-loading">
-                        <i class="fa fa-2x fa-spin fa-spinner"></i>
-                    </div>
-                    <div class="message is-dragover">
-                        <i class="fa fa-2x fa-cloud-upload"></i>
-                        <p>Drop your photo</p>
-                    </div>
-                    <div class="message is-wrong-file-type">
-                        <p>Only images allowed.</p>
-                        <p class="message--desktop">Drop your photo here or browse your computer.</p>
-                        <p class="message--mobile">Tap here to select your picture.</p>
-                    </div>
-                    <div class="message is-wrong-image-size">
-                        <p>Your photo must be larger than 350px.</p>
-                    </div>
-                </div>
-            </div>
+                
+<form action="register" method="POST" enctype="multipart/form-data">  
 
-            <div class="photo__options hide">
-                <div class="photo__zoom">
-                    <input type="range" class="zoom-handler">
-                </div><a href="javascript:;" class="remove"><i class="fa fa-trash"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-    <button type="button" id="previewBtn" class="buttonvai">Preview</button>
-  
-
-
-  
-  
-    <hr>
-    <img src="" alt="" class="preview">
-    <img src="" alt="" class="preview preview--rounded">
-    </div>
- 
+ <div id="profile-container" style="border:2px solid; box-shadow: 2px 5px 5px 5px #888888;background: radial-gradient(#FFF 40%, #000);">
+     <image id="profileImage" src="img/profile.png"  />
 </div>
-     <form action="register" method="post">
+<input id="imageUpload" type="file" 
+       name="profile_photo" placeholder="Photo" required="" capture>
+<br>
+
+
+
+ <script>
+	   $("#profileImage").click(function(e) {
+    $("#imageUpload").click();
+});
+
+function fasterPreview( uploader ) {
+    if ( uploader.files && uploader.files[0] ){
+          $('#profileImage').attr('src', 
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+}
+
+$("#imageUpload").change(function(){
+    fasterPreview( this );
+});
+
+</script>
+              
+ <!--    <form action="register" method="post"> -->
          <table>
             <ul>
                 <script>
@@ -230,7 +241,7 @@ function mobiletmyFunction() {
                     <!--pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"-->
                     <li><label for="email">Email Id : </label></li>
                     <li><Input required type="email" name="email" placeholder="enter your email"  id="emailname" onkeyup="emailtmyFunction()"/><span id="emaildemo" ></span></li></br>
-
+                    <li><p> <br></p></li>
                     <li><label for="mobile">Mobile Number : </label></li>
                     <li> <Input required type="number" name="mobile_number"  title="Phone number with 7-9 and remaing 9 digit with 0-9" pattern="/^[6-9]\d{9}$/" placeholder="enter your Mobile Number" id="mobilename" onkeyup="mobiletmyFunction()"/><span id="mobiledemo" ></span></li><br>
                     <!--pattern="[6-9]{1}[0-9]{9}"-->
@@ -298,9 +309,10 @@ function mobiletmyFunction() {
             <samp> <Input type="submit" id="button" value="Register" class="buttonvai"> </samp>      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-       </form>
     </div>
   </div>
+            </form>
+
   <div class="modal fade" id="myMo" role="dialog">
     <div class="modal-dialog">
     

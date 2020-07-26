@@ -5,19 +5,27 @@
  */
 
 package com.art.servlet;
-import java.util.Random;
 import com.art.dao.UserDao;
 import com.art.db.*;
 import com.art.dto.User;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -36,29 +44,107 @@ public class Register extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-PrintWriter pw = response.getWriter();
-		response.setContentType("text/html");
-		String first_name = request.getParameter("first_name");
-		String last_name = request.getParameter("last_name");
-		String email_id = request.getParameter("email_id");
-		String password = request.getParameter("password");
-		String mobile_number = request.getParameter("mobile_number");
-		String dob = request.getParameter("dob");
-		String state = request.getParameter("state");
-		String gender = request.getParameter("gender");
+       
+         String first_name="";
+         String last_name="";
+         String password="";
+         String email_id="";
+         String mobile_number="";
+         String gender="";
+         String state="";
+         String dob="";
+         
+        FileItem item = null;
+        String itemName = "";
+        String profile= "";
+       response.setContentType("text/html;charset=UTF-8");
+       try {
+            PrintWriter out = response.getWriter();
+            boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+            if (isMultipart) {
+                 System.out.println("----------------------=======");
+                ServletContext context = getServletContext();
+                String realPath = context.getRealPath("/");
+                System.out.println("project path  = " + realPath);
+                realPath = realPath.replace(File.separator+"build", "");
+                realPath= realPath +"@";
+                System.out.println("path without build " + realPath + "");
                 
-//                String OTPCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-//                StringBuilder otpp = new StringBuilder();
-//                Random rnd = new Random();
-//                while (otpp.length() < 6) { // length of the random string.
-//                    int index = (int) (rnd.nextFloat() * OTPCHARS.length());
-//                    otpp.append(OTPCHARS.charAt(index));
-//                }
-                String otp = OtpGeneration.otpGen();
-//                System.out.println("otppp"+otp);
+                realPath=realPath.replace("@", "\\");
+                System.out.println("----------------------------------------"+ realPath);
+                String finalPath = realPath + "upload";
+                System.out.println("final path" + finalPath);
+
+                FileItemFactory factory = new DiskFileItemFactory();
+                ServletFileUpload upload = new ServletFileUpload(factory);
+                try {
+                    List items = upload.parseRequest(request);
+                    Iterator itr = items.iterator();
+                    while (itr.hasNext()) {
+                        item = (FileItem) itr.next();
+                        if (!item.isFormField()) {
+                            itemName = item.getName();
+                            System.out.println("=================11=====" + itemName);
+                            profile = itemName.toString();
+                            int i = itemName.toString().lastIndexOf("\\");
+                            profile = profile.substring(itemName.lastIndexOf("\\") + 1);
+                            finalPath = finalPath + File.separator + profile;
+                            System.out.println("imagepath =" + finalPath);
+                            File savedFile = new File(finalPath);
+                            item.write(savedFile);
+                        } else {
+                            System.out.println("====++++++++==");
+                            String fieldname = item.getFieldName();
+                            String fieldData = item.getString();
+                          if (fieldname.equals("first_name")) {
+                              first_name = fieldData;                  
+                          }
+                          if (fieldname.equals("last_name")) {
+                              last_name = fieldData;                  
+                          }
+                          if (fieldname.equals("password")) {
+                              password = fieldData;                  
+                          }
+                          if (fieldname.equals("email")) {
+                              email_id = fieldData;                  
+                          }
+                          if (fieldname.equals("mobile_number")) {
+                              mobile_number = fieldData;                  
+                          }
+                          if (fieldname.equals("gender")) {
+                              gender = fieldData;                  
+                          }
+                          if (fieldname.equals("state")) {
+                              state = fieldData;                  
+                          }
+                          if (fieldname.equals("dob")) {
+                              dob = fieldData;                  
+                          }
+                        
+                        }}
+                       
                 
-              User user=new User();
+                        System.out.println(first_name);
+                        System.out.println("^^^^^^^^^^"+last_name);
+                        System.out.println(password);
+                        System.out.println(email_id);
+                        System.out.println(mobile_number);
+                        System.out.println(gender);
+                        System.out.println(state);
+                        System.out.println(dob);
+                        System.out.println(profile);
+                        
+                          String OTPCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+                StringBuilder otpp = new StringBuilder();
+                Random rnd = new Random();
+                while (otpp.length() < 6) { // length of the random string.
+                    int index = (int) (rnd.nextFloat() * OTPCHARS.length());
+                    otpp.append(OTPCHARS.charAt(index));
+                }
+                String otp = otpp.toString();
+                
+                
+                  User user=new User();
               user.setFirstname(first_name);
               user.setLastname(last_name);
               user.setEmail(email_id);
@@ -68,13 +154,22 @@ PrintWriter pw = response.getWriter();
               user.setPassword(password);
               user.setState(state);
               user.setOtp(otp);
+              user.setProfile(profile);
               boolean addUser = UserDao.addUser(user);
               
               
-     //          String a=SendSmsNew.sendotp(mobile_number,first_name,last_name,otp);
-     //   System.out.println("------------"+a);
-        
-                 response.sendRedirect("otp.jsp");
+      //      boolean flag=UserDao.editProfileImage(user);
+     //   if(!flag){
+            response.sendRedirect("otp.jsp");
+    //    }
+                    
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+       }catch (Exception e) {
+                    e.printStackTrace();
+                }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -92,14 +187,25 @@ PrintWriter pw = response.getWriter();
         processRequest(request, response);
     }
 
- 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-  
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";

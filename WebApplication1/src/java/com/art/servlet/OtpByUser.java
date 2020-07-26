@@ -43,7 +43,7 @@ public class OtpByUser extends HttpServlet {
      //          String a=SendSmsNew.sendotp(mobile_number,first_name,last_name,otp);
      //   System.out.println("------------"+a);
         
-                 response.sendRedirect("otp.jsp");
+                 response.sendRedirect("dashboard.jsp");
     
     }
 
