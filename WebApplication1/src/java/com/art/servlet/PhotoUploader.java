@@ -8,14 +8,18 @@ package com.art.servlet;
 import com.art.dao.UserDao;
 import com.art.db.*;
 import com.art.dto.User;
+import static com.art.servlet.OtpGeneration.uniqueCodeGen;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import static java.time.Instant.now;
 import static java.time.LocalDate.now;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -29,8 +33,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  *
@@ -49,15 +51,6 @@ public class PhotoUploader extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String first_name="";
-         String last_name="";
-         String password="";
-         String email_id="";
-         String mobile_number="";
-         String gender="";
-         String state="";
-         String dob="";
-         
         FileItem item = null;
         String itemName = "";
         String profile= "";
@@ -97,8 +90,20 @@ public class PhotoUploader extends HttpServlet {
                             item.write(savedFile);
                         }}
                        
-                System.out.println(profile);
+                //     Generating time and date   
+                    Date now = new Date();
+                    String pattern = "yyyy-MM-dd";
+                    SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+                    String mysqlDateString = formatter.format(now);
+                    String unique_code= uniqueCodeGen();
+                  
+                
                   User user=new User();
+                  user.setProfile(itemName);
+                  user.setDate(mysqlDateString);
+                  user.setUnique_code(unique_code);
+                  String uploadPhoto = UserDao.uploadPhoto(user);
+                  
                     response.sendRedirect("index.html");
         
                     

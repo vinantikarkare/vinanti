@@ -26,7 +26,25 @@ public class User {
     private String comment; 
     private String comment_reply;
     private String unique_code;
-     private String profile;
+    private String profile;
+    private String date;
+    private String time;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getFirst_name() {
         return first_name;

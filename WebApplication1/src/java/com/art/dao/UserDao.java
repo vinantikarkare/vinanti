@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 
@@ -292,6 +293,29 @@ public static boolean unclickLike(String codee, String likebuttonid, int count) 
             e.printStackTrace();
         }
         return user;
+    }
+
+    public static String uploadPhoto(User user) {
+        LocalTime now = LocalTime.now();
+        Time time = Time.valueOf( now );
+        String date = user.getDate();
+        String unique_code = user.getUnique_code();
+        String profile = user.getProfile();
+        boolean flag=true;
+        try {
+        Connection conn = DBConnection.getConnection();
+         String sql = "INSERT INTO likebutton (code, profile, date, time) values (?, ?, ?, ?)";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, unique_code);
+		ps.setString(2, profile);
+		ps.setString(3, date);
+		ps.setTime(4, time);
+                flag=ps.execute();
+        
+         }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return unique_code;
     }
        
     }
