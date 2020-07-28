@@ -24,6 +24,10 @@
         <servlet-name>PhotoUploader</servlet-name>
         <servlet-class>com.art.servlet.PhotoUploader</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Contact</servlet-name>
+        <servlet-class>com.art.servlet.Contact</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>PhotoUploader</servlet-name>
         <url-pattern>/PhotoUploader</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Contact</servlet-name>
+        <url-pattern>/Contact</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

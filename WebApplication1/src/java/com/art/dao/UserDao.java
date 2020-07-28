@@ -318,4 +318,41 @@ public static boolean unclickLike(String codee, String likebuttonid, int count) 
         return unique_code;
     }
        
+     public static boolean addContact(User user) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+        String first_name =user.getFirstname();
+        String last_name =user.getLastname();
+        String email_id =user.getEmail();
+        String subject =user.getSubject();
+        String message =user.getMessage();
+        boolean flag=true;
+        try 
+        {
+                
+	Connection con = DBConnection.getConnection();
+        String sql = "INSERT INTO contactus (first_name, last_name, email_id, subject, message) values (?, ?, ?, ?, ?)";            
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, first_name);
+        ps.setString(2, last_name);
+	ps.setString(3, email_id);
+        ps.setString(4, subject);
+	ps.setString(5, message);
+	flag=ps.execute();
+        
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return flag;
     }
+
+    
+}
+
+
+
+
+
+
