@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,29 +40,46 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
   
             /* TODO output your page here. You may use following sample code. */
-           		String email_id = request.getParameter("email");
+                PrintWriter pw = response.getWriter();
+           	String email_id = request.getParameter("email");
 		String password = request.getParameter("password");
+               
                 
                 System.out.println(email_id);
                 System.out.println(password);
                 
-                int id= UserDao.login_check(email_id,password);
+               
+                 int id= UserDao.login_check(email_id,password);
                 
+                String checkotp = UserDao.checkloginOtp( email_id);
+                            
                   String mobiles= "7974644419";
-        String firstname="Vaibhav";
-        String lastname= "Patidar";
+                  String firstname="Vaibhav";
+                  String lastname= "Patidar";
         
        
         
                  System.out.println("================="+id);
+                 System.out.println("=="+checkotp);
                  
-                    HttpSession session = request.getSession(false);
-                if(id==0){
-                     response.sendRedirect("registration.jsp");
-                }
-                else{
-                     session.setAttribute("id", id);
+                 HttpSession session = request.getSession(false);
+                 
+                 if((id!=0)&&(!checkotp.equals(""))) 
+                {
+                    session.setAttribute("id", id);
                      response.sendRedirect("comment.jsp");
+                    
+                }
+                else if((id!=0)&&(checkotp.equals("")))
+                {
+                    response.sendRedirect("otp.jsp");
+                }
+              
+                else
+                {
+                    RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				rd.include(request,response);
+				pw.println("<div class=\"tab\">Incorrect email or Password</div>");
                 }
         
     }
