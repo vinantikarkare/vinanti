@@ -347,7 +347,28 @@ public static boolean unclickLike(String codee, String likebuttonid, int count) 
         
         return flag;
     }
-
+public static String checkloginOtp(String email_id) {
+        Connection conn = DBConnection.getConnection();
+        String otp="";
+        int id=0;
+        try
+        {
+            String sql = "select otp,id from registration where email_id ='"+email_id+"'";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            System.out.println(sql);
+            while (rs.next()) {
+                id = rs.getInt("id");
+                otp=rs.getString("otp");
+                System.out.println(id+""+otp);
+                
+            }
+        } 
+          catch (Exception e) {
+            e.printStackTrace();
+        }
+        return otp;
+    }
     
 }
 
