@@ -1,0 +1,147 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 30, 2020, 12:19:20 PM
+    Author     : SACHIN JADHAV
+*/
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins',sans-serif;
+    
+}
+
+
+<!--Email CSS-->
+
+jsp,body{
+    display: grid;
+    height: 100%;
+    
+    
+    place-items: center;
+    background: #008B8B;
+}
+
+.content{
+    
+    max-width: 350px;
+    border-radius: 10px;
+    padding: 20px;
+    background: #f0f8ff;
+    text-align: center;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+}
+
+.content form{
+    margin: 25px 25px;
+}
+
+.content form .field{
+    width: 90%;
+    height: 60%;
+    display: flex;
+    position: relative;
+}
+
+form .field input{
+    width: 70%;
+    height: 100%;
+    border: 2px solid lightgrey;
+    border-radius: 5px;
+    padding-left: 15px;
+    font-size: 16px;
+    outline: none;
+}
+
+form .field .icons{
+    position: absolute;
+    right: -18px;
+    top: 95%;
+    
+    transform: translateY(-100%);
+}
+
+.field .icons span{
+    height: 20px;
+    width: 20px;
+    border: 2px solid;
+    border-radius: 75%;
+    
+    line-height: 20px;
+    transform: translateZ(100%);
+    display: none;
+}
+
+.field .icons span.icon1{
+    color: #27ae60;
+    
+}
+
+.field .icons span.icon2{
+    color: #e74c3c;
+    
+}
+
+
+<!-- OTP CSS -->
+
+form .field .icons{
+    position: absolute;
+    right: -15px;
+    top: 95%;
+    
+    transform: translateY(-100%);
+}
+
+.field .icons span{
+    height: 20px;
+    width: 20px;
+    border: 3px solid;
+    border-radius: 75%;
+    
+    line-height: 20px;
+    transform: translateZ(100%);
+    display: none;
+}
+
+.field .icons span.icon4{
+    color: #27ae60;
+    
+}
+
+.field .icons span.icon5{
+    color: #e74c3c;
+    
+}
+
+
+<!--Submit Button-->
+      
+
+.buttonvai {
+  background-color: #00b36b; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  border-radius: 20px;
+}
+ 
+.buttonvai:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.19),0 17px 50px 0 rgba(0,0,0,0.56);
+  margin: 0px 2px;
+  
+}
