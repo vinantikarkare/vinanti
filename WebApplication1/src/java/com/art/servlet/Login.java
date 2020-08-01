@@ -64,13 +64,14 @@ public class Login extends HttpServlet {
                  
                  HttpSession session = request.getSession(false);
                  
-                 if((id!=0)&&(!checkotp.equals(""))) 
+                 if((id!=0) && (checkotp.equals("0"))) 
                 {
+                    
                     session.setAttribute("id", id);
                      response.sendRedirect("comment.jsp");
                     
                 }
-                else if((id!=0)&&(checkotp.equals("")))
+                else if((id!=0) && !(checkotp.equals("0")))
                 {
                     response.sendRedirect("otp.jsp");
                 }
