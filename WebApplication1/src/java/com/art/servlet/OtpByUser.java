@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,15 +35,17 @@ public class OtpByUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String otp = request.getParameter("otp_user");
-	String email_id = request.getParameter("email_id");
+        String otp = request.getParameter("otp");
+        System.out.println(otp);
+	String email_id = request.getParameter("email");
             
-              int checkOtp = UserDao.checkOtp(otp,email_id);
+              int id = UserDao.checkOtp(otp,email_id);
               
               
      //          String a=SendSmsNew.sendotp(mobile_number,first_name,last_name,otp);
      //   System.out.println("------------"+a);
-        
+          HttpSession session = request.getSession(false);
+           session.setAttribute("id", id);
                  response.sendRedirect("dashboard.jsp");
     
     }

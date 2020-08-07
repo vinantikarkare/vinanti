@@ -129,6 +129,11 @@ img {
 .sticky li p a:hover{
     text-decoration:underline;
 }
+
+
+.stybut{
+    border: 0px;
+}
     </style>
 
     <body >
@@ -163,33 +168,46 @@ img {
 <div class="sticky-container">
     <ul class="sticky">
         <li>
-            <img src="img/use/i.png" width="32" height="32">
-            <p><button class="" onclick="document.execCommand('italic',false,null);" title="Italicize Highlighted Text"><i>Click for <br>Italic</i></button></p>
+            <img src="img/use/italic.png" width="32" height="32">
+            <p><button class="" onclick="document.execCommand('italic',false,null);" title="Italicize Highlighted Text"><spam class="stybut"><i>Click for <br>Italic</i></spam></button></p>
         </li>
         <li>
-            <img src="images/twitter-circle.png" width="32" height="32">
+            <img src="img/use/bold.png" width="32" height="32">
             <p><button class="" onclick="document.execCommand( 'bold',false,null);" title="Bold Highlighted Text"><b>Bold</b></button></p>
         </li>
         <li>
-            <img src="images/gplus-circle.png" width="32" height="32">
+            <img src="img/use/underlinee.png" width="32" height="32">
             <p><button class="" onclick="document.execCommand( 'underline',false,null);"><u>Underline</u></button></p>
         </li>
-        <li>
-            <img src="images/linkedin-circle.png" width="32" height="32">
-            <p><a href="https://www.linkedin.com/company/codexworld" target="_blank">Follow Us on<br>LinkedIn</a></p>
-        </li>
-        <li>
-            <img src="images/youtube-circle.png" width="32" height="32">
-            <p><a href="http://www.youtube.com/codexworld" target="_blank">Subscribe on<br>YouYube</a></p>
-        </li>
-        <li>
-            <img src="images/pin-circle.png" width="32" height="32">
-            <p><a href="https://www.pinterest.com/codexworld" target="_blank">Follow Us on<br>Pinterest</a></p>
-        </li>
+       
     </ul>
 </div>
-  
+<br>
+<br>
+<button onclick="myfun()">save</button>
+<form action="filesubmit" method="post">
+    <input type="text" name="idd" value="<%=idd%>" >
+    UNique :  <input type="text" name="unique_code" >
+   File :  <textarea id="text" name="textfile"></textarea>
+    
+   <br><br>
+   
+   <br>
+   <br>
+   <Input type="submit" id="button" value="Submit" class="buttonvai">
+   </form>
 	</div>
+     <script>
+	function myfun(){
+		var v = document.getElementById("fileDisplayArea").innerHTML;
+		
+		
+	document.getElementById("text").innerHTML = v;
+	console.log(v);
+	
+	}
+</script> 
+   
  <script>
  window.onload = function() {
 		var fileInput = document.getElementById('fileInput');
