@@ -28,6 +28,10 @@
         <servlet-name>Contact</servlet-name>
         <servlet-class>com.art.servlet.Contact</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FileSubmit</servlet-name>
+        <servlet-class>com.art.servlet.FileSubmit</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>Contact</servlet-name>
         <url-pattern>/Contact</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileSubmit</servlet-name>
+        <url-pattern>/FileSubmit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

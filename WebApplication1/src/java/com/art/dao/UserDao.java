@@ -369,6 +369,30 @@ public static String checkloginOtp(String email_id) {
         }
         return otp;
     }
+
+    public static String addWritersText(User user) {
+         int writers_id =user.getWriters_id();
+        String topic =user.getTopic();
+        String unique_code =user.getUnique_code();
+        boolean flag = false;
+        try 
+        {
+                
+	Connection con = DBConnection.getConnection();
+        String sql = "INSERT INTO writers (writers_id, topic, unique_code) values (?, ?, ?)";            
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, writers_id);
+        ps.setString(2, topic);
+	ps.setString(3, unique_code);
+	flag=ps.execute();
+        
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return unique_code;
+    }
     
 }
 

@@ -31,6 +31,42 @@ public class User {
     private String time;
     private String message;
     private String subject;
+    private String topic;
+    private int photographer_id;
+    private int sktechers_id;
+    private int writers_id;
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public int getPhotographer_id() {
+        return photographer_id;
+    }
+
+    public void setPhotographer_id(int photographer_id) {
+        this.photographer_id = photographer_id;
+    }
+
+    public int getSktechers_id() {
+        return sktechers_id;
+    }
+
+    public void setSktechers_id(int sktechers_id) {
+        this.sktechers_id = sktechers_id;
+    }
+
+    public int getWriters_id() {
+        return writers_id;
+    }
+
+    public void setWriters_id(int writers_id) {
+        this.writers_id = writers_id;
+    }
     
     
     public String getDate() {

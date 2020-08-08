@@ -185,9 +185,9 @@ img {
 <br>
 <br>
 <button onclick="myfun()">save</button>
-<form action="filesubmit" method="post">
+<form action="FileSubmit" method="post">
     <input type="text" name="idd" value="<%=idd%>" >
-    UNique :  <input type="text" name="unique_code" >
+    Topic :  <input type="text" name="topic" >
    File :  <textarea id="text" name="textfile"></textarea>
     
    <br><br>
